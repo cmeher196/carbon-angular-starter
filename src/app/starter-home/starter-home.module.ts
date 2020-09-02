@@ -6,9 +6,19 @@ import {
 	GridModule,
 	ListModule,
 	TabsModule,
-	TilesModule
+	TilesModule,
+	ButtonModule,
+	ContentSwitcherModule,
+	RadioModule,
+	CheckboxModule,
+	ModalModule,
+	PlaceholderModule,
+	SelectModule,
+	TableModule,
+	InputModule,	
 } from 'carbon-components-angular';
 import { StarterHomeRoutingModule } from './starter-home-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	imports: [
@@ -17,7 +27,17 @@ import { StarterHomeRoutingModule } from './starter-home-routing.module';
 		GridModule,
 		ListModule,
 		TabsModule,
-		TilesModule
+		TilesModule,
+		ButtonModule,
+		ContentSwitcherModule,
+		RadioModule,
+		FormsModule,
+		CheckboxModule,
+		ModalModule,
+		PlaceholderModule,
+		SelectModule,
+		TableModule,
+		InputModule
 	],
 	declarations: [StarterHomeComponent]
 })

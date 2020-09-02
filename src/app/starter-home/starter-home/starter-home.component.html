@@ -1,74 +1,213 @@
 <div class="starter-home" ibmGrid>
-	<h1 class="title">Congratulations, <br>you made it!</h1>
-	<p class="subtitle">You have offically built your first Carbon Angular app</p>
 	<div class="body-text" ibmRow>
-		<div ibmCol [columnNumbers]="{'lg': 6, 'md': 12, 'sm': 12}">
-			<p>
-				This is an Angular CLI app configured for use with Carbon.
-				It includes the grid, list, tab and tile components. Feel free
-				to add or remove any components to fit your use case.
-				To help you get started we've also set up:
-			</p>
-		</div>
-		<div ibmCol [columnNumbers]="{'lg': 6, 'md': 12, 'sm': 12}">
-			<ul ibmList class="list">
-				<li ibmListItem>Angular-cli</li>
-				<li ibmListItem>Build Process</li>
-				<li ibmListItem>Code styles <br>& editor configs</li>
-				<li ibmListItem>Folder structure</li>
-				<li ibmListItem>Lazy loading</li>
-				<li ibmListItem>Routing</li>
-				<li ibmListItem>Service workers</li>
-				<li ibmListItem>Test framework</li>
-			</ul>
+		<div ibmCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
+			<img src="../../../assets/banner.jpg" style="width: 100%;height: 50%;margin-top:-40px" />
 		</div>
 	</div>
+	<div style="background-color: lightgray; height: 60px;margin-top:-320px">
+		<p style="position:absolute;left: 80px;padding: 10px;">Please note that field in "*" are required </p>
+		<div style="position:absolute;right:120px;padding:10px">
 
-	<ibm-tabs [isNavigation]="false">
-		<ibm-tab heading="carbon-components-angular">
-			<p>Description</p><br>
-			<p class="starter-tab-description">
-				A component library that gives developers a collection of
-				re-usable angular components that they can use for building
-				websites and user interfaces
-			</p>
-			<p>Other useful resources</p><br>
-			<div ibmRow>
-				<div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-					<ibm-clickable-tile href="https://github.com/IBM/carbon-components-angular" target="_blank">Repository</ibm-clickable-tile>
+			<button ibmButton="secondary" size="sm" style="text-align:center;width:10px;margin-right:10px;padding-left: 15px;
+			padding-right: 40px">Edit</button>
+			<button ibmButton="primary" size="sm" style="text-align:center;width: 10px;margin-left:10px;padding-left: 15px;
+			padding-right: 45px" (click)="onSave()">Save</button>
+		</div>
+
+	</div>
+	<div>
+		<ibm-content-switcher (selected)="selected($event)">
+			<button ibmContentOption name="First">Product defination</button>
+			<button ibmContentOption name="Second">Package details</button>
+			<button ibmContentOption name="Third">Environmental report card</button>
+			<button ibmContentOption name="Fourth">EU Directive 94/62/EC</button>
+			<button ibmContentOption name="Fifth">File Attachments</button>
+		</ibm-content-switcher>
+	</div>
+	<ng-container [ngSwitch]="activeTab">
+		<ng-container *ngSwitchCase="'First'" [ngTemplateOutlet]="First"></ng-container>
+		<ng-container *ngSwitchCase="'Second'" [ngTemplateOutlet]="Second"></ng-container>
+		<ng-container *ngSwitchCase="'Third'" [ngTemplateOutlet]="Third"></ng-container>
+		<ng-container *ngSwitchCase="'Fourth'" [ngTemplateOutlet]="Fourth"></ng-container>
+		<ng-container *ngSwitchCase="'Fifth'" [ngTemplateOutlet]="Fifth"></ng-container>
+	</ng-container>
+	<ng-template #First>
+		<div>
+			<h1>First Tab nothing to display</h1>
+		</div>
+	</ng-template>
+	<ng-template #Second>
+		<div>
+			<fieldset class="bx--fieldset">
+				<legend class="bx--label">This package is for</legend>
+				<ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio" (change)="onChange($event)">
+					<ibm-radio value="AllGeos">
+						All GEOs
+					</ibm-radio>
+					<ibm-radio value="SelectGeos">
+						Select GEOs
+					</ibm-radio>
+				</ibm-radio-group>
+				<p style="font-style: italic;"> These fields are required only if the corresponding geography was
+					selected above</p>
+			</fieldset>
+		</div>
+	</ng-template>
+	<ng-template #Third>
+		<div ibmGrid style="padding-top: 50px;">
+			<div ibmRow gutter=true leftGutter=true rightGutter=true condensed=false>
+				<div ibmCol class="custom-class-example" [columnNumbers]="{'lg':4,'md': 2, 'sm': 12}">
+					<div>
+						<h5 style="font-size-adjust: 10px;">Select all the material used in this package assembly *</h5>
+					</div>
+					<div>
+						<fieldset class="bx--fieldset">
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								Corrugated(20)
+							</ibm-checkbox>
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								Paper(22)
+							</ibm-checkbox>
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								Processed Wood(plywood/masonite/OSB/etc)
+							</ibm-checkbox>
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								Wood(50)
+							</ibm-checkbox>
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								High density polyethylene HDPE(2)
+							</ibm-checkbox>
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								Low density polyethylene LDPE(4)
+							</ibm-checkbox>
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								Expanded polyethylene EPE(4)
+							</ibm-checkbox>
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								Expanded polypropylene EPP(4)
+							</ibm-checkbox>
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								Polypropylene PP(5)
+							</ibm-checkbox>
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								Expanded polystyrene/arcel EPS(6)
+							</ibm-checkbox>
+							<ibm-checkbox (change)="onCheckPackage($event,1)">
+								Polyurethane PU(7)
+							</ibm-checkbox>
+						</fieldset>
+					</div>
 				</div>
-				<div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-					<ibm-clickable-tile href="https://angular.carbondesignsystem.com/" target="_blank">Component Library</ibm-clickable-tile>
-				</div>
-				<div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-					<ibm-clickable-tile href="https://angular.carbondesignsystem.com/documentation/" target="_blank">Documentation</ibm-clickable-tile>
-				</div>
-				<div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-					<ibm-clickable-tile href="https://www.npmjs.com/package/carbon-components-angular" target="_blank">NPM</ibm-clickable-tile>
+				<div ibmCol class="custom-class-example" [columnNumbers]="{'lg':1,'md': 2, 'sm': 12}" style="border-left: 2px solid lightgray;
+					height: 500px;"></div>
+				<div ibmCol class="custom-class-example" [columnNumbers]="{'lg':7,'md': 2, 'sm': 12}"
+					style="margin-left: -100px;">
+					<p style="text-align: justify;padding-bottom: 10px;">1. Lorem Ipsum is simply dummy text of the
+						printing and typesetting industry. Lorem Ipsum </p>
+					<p style="text-align: justify; padding-bottom: 10px;"> 2. Contrary to popular belief, Lorem Ipsum is
+						not simply random text. It has roots in a piece of
+						classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a
+						Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin
+						words</p>
+					<p style="text-align: justify; padding-bottom: 10px;">Lorem Ipsum comes from sections 1.10.32 and
+						1.10.33 of "de Finibus Bonorum et Malorum" (The
+						Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of
+						ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor
+						sit amet..", comes from a line in section 1.10.32.</p>
+					<p style="padding-top: 10px;"><a href="#">Click here to access Spec #5897660</a></p>
+					<p><a href="#">Click here to access Spec #5897660</a></p>
+					<p style="text-align: justify;padding-top: 10px;">* Lorem Ipsum comes from sections 1.10.32 and
+						1.10.33 of de Finibus Bonorum et Malorum</p>
+					<div style="padding-top: 10px;
+					padding-bottom: 20px;">
+						<ibm-select class='bx--select' display="inline" style="width:100%">
+							<option value="Chlorine bleaching restrictions" selected>Chlorine bleaching restrictions
+							</option>
+							<option value="Chlorine bleaching restrictions1">Chlorine bleaching restrictions2</option>
+							<option value="Chlorine bleaching restrictions2">Chlorine bleaching restrictions3</option>
+							<option value="Chlorine bleaching restrictions3">Chlorine bleaching restrictions4</option>
+							<option value="Chlorine bleaching restrictions4">Chlorine bleaching restrictions5</option>
+						</ibm-select>
+					</div>
+					<div>
+						<ibm-table style="display: block; width: 100%;" [model]="model" [size]="size"></ibm-table>
+					</div>
 				</div>
 			</div>
-		</ibm-tab>
-		<ibm-tab heading="carbon-charts">
-			<p>Description</p><br>
-			<p class="starter-tab-description">
-				Carbon Charts is an open-source JavaScript data visualization
-				library used as a functional component of IBM's Carbon Design System.
-			</p>
-			<p>Other useful resources</p><br>
-			<div ibmRow>
-				<div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-					<ibm-clickable-tile href="https://github.com/IBM/carbon-charts" target="_blank">Repository</ibm-clickable-tile>
-				</div>
-				<div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-					<ibm-clickable-tile href="https://carbon-design-system.github.io/carbon-charts/" target="_blank">Demo</ibm-clickable-tile>
-				</div>
-				<div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-					<ibm-clickable-tile href="https://carbon-design-system.github.io/carbon-charts/documentation/" target="_blank">Documentation</ibm-clickable-tile>
-				</div>
-				<div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-					<ibm-clickable-tile href="https://www.npmjs.com/package/@carbon/charts" target="_blank">NPM</ibm-clickable-tile>
-				</div>
-			</div>
-		</ibm-tab>
-	</ibm-tabs>
+		</div>
+	</ng-template>
+
+	<ng-template #customSVHC let-data="data">
+		<ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio" (change)="onSVHCChange($event,data)">
+			<ibm-radio value="Yes">
+				Yes
+			</ibm-radio>
+			<ibm-radio value="No">
+				No
+			</ibm-radio>
+		</ibm-radio-group>
+	</ng-template>
+	<ng-template #customSNUR let-data="data">
+		<ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio" (change)="onSNURChange($event,data)">
+			<ibm-radio value="Yes">
+				Yes
+			</ibm-radio>
+			<ibm-radio value="No">
+				No
+			</ibm-radio>
+		</ibm-radio-group>
+	</ng-template>
+
+	<ng-template #customFormTemplate>
+		<ibm-label>
+			<input ibmText name="">
+		</ibm-label>
+	</ng-template>
+
+	<ng-template #Fourth>
+		<div>
+			<h1>Hello 4</h1>
+		</div>
+	</ng-template>
+	<ng-template #Fifth>
+		<div>
+			<h1>Hello 5</h1>
+		</div>
+	</ng-template>
+	<ng-template #Sixth>
+		<div>
+			<h1>Hello 6</h1>
+		</div>
+	</ng-template>
+	<ng-container [ngSwitch]="activeRadio">
+		<ng-container *ngSwitchCase="'AllGeos'" [ngTemplateOutlet]="AllGeos"></ng-container>
+		<ng-container *ngSwitchCase="'SelectGeos'" [ngTemplateOutlet]="SelectGeos"></ng-container>
+	</ng-container>
+
+	<ng-template #AllGeos>
+		<div>
+			<fieldset class="bx--fieldset">
+				<legend class="bx--label">Select a Checkbox out of ur choice</legend>
+				<ibm-checkbox value='checkvalue1' (change)="onCheckBox($event)">
+					Checkbox 1
+				</ibm-checkbox>
+				<ibm-checkbox value='checkvalue2' (change)="onCheckBox($event)">
+					Checkbox 2
+				</ibm-checkbox>
+				<ibm-checkbox value='checkvalue3' (change)="onCheckBox($event)">
+					Checkbox 3
+				</ibm-checkbox>
+				<ibm-checkbox value='checkvalue4' (change)="onCheckBox($event)">
+					Checkbox 4
+				</ibm-checkbox>
+			</fieldset>
+		</div>
+	</ng-template>
+	<ng-template #SelectGeos>
+		<div>
+			<h1>Hello Selected Geos</h1>
+		</div>
+	</ng-template>
+
+
 </div>
