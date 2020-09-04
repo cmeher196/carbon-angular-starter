@@ -31,28 +31,17 @@
 		<ng-container *ngSwitchCase="'Fourth'" [ngTemplateOutlet]="Fourth"></ng-container>
 		<ng-container *ngSwitchCase="'Fifth'" [ngTemplateOutlet]="Fifth"></ng-container>
 	</ng-container>
+
 	<ng-template #First>
 		<div>
 			<h1>First Tab nothing to display</h1>
 		</div>
 	</ng-template>
+
 	<ng-template #Second>
-		<div>
-			<fieldset class="bx--fieldset">
-				<legend class="bx--label">This package is for</legend>
-				<ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio" (change)="onChange($event)">
-					<ibm-radio value="AllGeos">
-						All GEOs
-					</ibm-radio>
-					<ibm-radio value="SelectGeos">
-						Select GEOs
-					</ibm-radio>
-				</ibm-radio-group>
-				<p style="font-style: italic;"> These fields are required only if the corresponding geography was
-					selected above</p>
-			</fieldset>
-		</div>
+		<app-product-details></app-product-details>
 	</ng-template>
+
 	<ng-template #Third>
 		<div ibmGrid style="padding-top: 50px;">
 			<div ibmRow gutter=true leftGutter=true rightGutter=true condensed=false>
@@ -62,10 +51,11 @@
 					</div>
 					<div>
 						<fieldset class="bx--fieldset">
-							<ibm-checkbox (change)="onCheckPackage($event,1)">
-								Corrugated(20)
+							<ibm-checkbox *ngFor="let material of tableCheckBox" (change)="onCheckPackage($event,1)">
+								<!-- Corrugated(20) -->
+								{{material}}
 							</ibm-checkbox>
-							<ibm-checkbox (change)="onCheckPackage($event,1)">
+							<!-- <ibm-checkbox (change)="onCheckPackage($event,1)">
 								Paper(22)
 							</ibm-checkbox>
 							<ibm-checkbox (change)="onCheckPackage($event,1)">
@@ -94,7 +84,7 @@
 							</ibm-checkbox>
 							<ibm-checkbox (change)="onCheckPackage($event,1)">
 								Polyurethane PU(7)
-							</ibm-checkbox>
+							</ibm-checkbox> -->
 						</fieldset>
 					</div>
 				</div>
@@ -179,35 +169,9 @@
 			<h1>Hello 6</h1>
 		</div>
 	</ng-template>
-	<ng-container [ngSwitch]="activeRadio">
-		<ng-container *ngSwitchCase="'AllGeos'" [ngTemplateOutlet]="AllGeos"></ng-container>
-		<ng-container *ngSwitchCase="'SelectGeos'" [ngTemplateOutlet]="SelectGeos"></ng-container>
-	</ng-container>
+	
 
-	<ng-template #AllGeos>
-		<div>
-			<fieldset class="bx--fieldset">
-				<legend class="bx--label">Select a Checkbox out of ur choice</legend>
-				<ibm-checkbox value='checkvalue1' (change)="onCheckBox($event)">
-					Checkbox 1
-				</ibm-checkbox>
-				<ibm-checkbox value='checkvalue2' (change)="onCheckBox($event)">
-					Checkbox 2
-				</ibm-checkbox>
-				<ibm-checkbox value='checkvalue3' (change)="onCheckBox($event)">
-					Checkbox 3
-				</ibm-checkbox>
-				<ibm-checkbox value='checkvalue4' (change)="onCheckBox($event)">
-					Checkbox 4
-				</ibm-checkbox>
-			</fieldset>
-		</div>
-	</ng-template>
-	<ng-template #SelectGeos>
-		<div>
-			<h1>Hello Selected Geos</h1>
-		</div>
-	</ng-template>
+	
 
 
 </div>

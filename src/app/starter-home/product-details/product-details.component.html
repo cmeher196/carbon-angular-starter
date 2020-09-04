@@ -1,0 +1,52 @@
+<div>
+    <fieldset class="bx--fieldset">
+        <legend class="bx--label">This package is for</legend>
+        <ibm-radio-group aria-label="radiogroup" name='Ageo' [(ngModel)]="radio" (change)="onChange($event)">
+            <ibm-radio 
+            [checked] ="AllGeoChecked"
+            value="AllGeos">
+                All GEOs
+            </ibm-radio>
+            <ibm-radio value="SelectGeos">
+                Select GEOs
+            </ibm-radio>
+        </ibm-radio-group>
+        <p style="font-style: italic;"> These fields are required only if the corresponding geography was
+            selected above</p>
+    </fieldset>
+    <div *ngIf="_allGeo; else SelectGeos">
+        <fieldset class="bx--fieldset">
+            <legend class="bx--label">Select a Checkbox out of ur choice</legend>
+            <ibm-checkbox *ngFor='let checkbox of allGeoData' value={{checkbox.name}} [checked]="checkbox.check" (change)="onCheckBox($event)">
+                <!-- Checkbox 1 -->
+                {{checkbox.name}}
+            </ibm-checkbox>
+        </fieldset>
+    </div>
+
+</div>
+<ng-template #AllGeos>
+    <div>
+        <!-- <fieldset class="bx--fieldset">
+            <legend class="bx--label">Select a Checkbox out of ur choice</legend>
+            <ibm-checkbox *ngFor='let checkbox of allGeoData' value={{checkbox}} (change)="onCheckBox($event)">
+                Checkbox 1 
+                {{checkbox}}
+            </ibm-checkbox>
+        </fieldset> -->
+    </div>
+</ng-template>
+
+<!-- <ng-container [ngSwitch]="activeRadio">
+    <ng-container *ngSwitchCase="'AllGeos'" [ngTemplateOutlet]="AllGeos"></ng-container>
+    <ng-container *ngSwitchCase="'SelectGeos'" [ngTemplateOutlet]="SelectGeos"></ng-container>
+</ng-container> -->
+
+
+
+<!-- <ng-template #SelectGeos> -->
+    <ng-template #SelectGeos>
+    <div>
+        <h1>Hello Selected Geos</h1>
+    </div>
+</ng-template>

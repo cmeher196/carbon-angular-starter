@@ -19,6 +19,7 @@ import {
 } from 'carbon-components-angular';
 import { StarterHomeRoutingModule } from './starter-home-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
 	imports: [
@@ -39,6 +40,6 @@ import { FormsModule } from '@angular/forms';
 		TableModule,
 		InputModule
 	],
-	declarations: [StarterHomeComponent]
+	declarations: [StarterHomeComponent, ProductDetailsComponent]
 })
 export class StarterHomeModule { }

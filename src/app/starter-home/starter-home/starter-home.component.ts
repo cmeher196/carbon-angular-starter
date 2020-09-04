@@ -11,6 +11,28 @@ import { IfStmt } from '@angular/compiler';
 })
 export class StarterHomeComponent implements OnInit {
 
+	result = {}
+	packageDetails = {}
+	activeTab = 'First';
+	activeRadio = ''
+	model = new TableModel();
+	size = "md"
+	val0 = null
+	val1 = null
+	val2 = null
+	val3 = null
+	val4 = null
+	val5 = null
+	val6 = null
+	val7 = null
+	val8 = null
+	val9 = null
+	val10 = null
+	svhc = []
+	snur = []
+	evnReportDTO = {}
+	tableCheckBox: Array<string>
+
 	@ViewChild("customSVHC", { static: false })
 	protected customSVHC: TemplateRef<any>;
 
@@ -46,29 +68,23 @@ export class StarterHomeComponent implements OnInit {
 		// 	[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],
 		// 	[new TableItem({ data: "Name 7" }), new TableItem({data: "twer"})]
 		// ];
+		this.tableCheckBox = [
+			'Corrugated(20)',
+			'Paper(22)',
+			'Processed Wood(plywood/masonite/OSB/etc)',
+			'Wood(50)',
+			'High density polyethylene HDPE(2)',
+			'Low density polyethylene LDPE(4)',
+			'Expanded polyethylene EPE(4)',
+			'Expanded polypropylene EPP(4)',
+			'Polypropylene PP(5)',
+			'Expanded polystyrene/arcel EPS(6)',
+			'Polyurethane PU(7)'
+		]
+		
 	}
 
-	result = {}
-	packageDetails = {}
-	activeTab = 'First';
-	activeRadio = ''
-	model = new TableModel();
-	size = "md"
-	val0 = null
-	val1 = null
-	val2 = null
-	val3 = null
-	val4 = null
-	val5 = null
-	val6 = null
-	val7 = null
-	val8 = null
-	val9 = null
-	val10 = null
-	checkBoxArr = []
-	svhc = []
-	snur = []
-	evnReportDTO = {}
+
 	selected(event) {
 		this.activeTab = event.name
 		if (this.activeRadio != 'Second') {
@@ -79,18 +95,13 @@ export class StarterHomeComponent implements OnInit {
 
 		}
 	}
-	onCheckBox(event) {
-		console.log(event.source.value);
-		this.checkBoxArr.push(event.source.value)
-		console.log(this.checkBoxArr);
-		sessionStorage.setItem('AllGeoCheckBox', JSON.stringify(this.checkBoxArr))
-	}
-	onChange(event) { // Package details Radio Button
-		console.log(event.value);
-		this.activeRadio = event.value;
-	}
+	
+	// onChange(event) { // Package details Radio Button
+	// 	console.log(event.value);
+	// 	this.activeRadio = event.value;
+	// }
 
-	onCheckPackage(event,data) {
+	onCheckPackage(event, data) {
 		//console.log('value.....',value);
 		console.log(event);
 		switch (event.source.id) {
